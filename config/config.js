@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config();
 var convict = require('convict');
 var config = convict({
     src: {
@@ -24,7 +26,7 @@ var config = convict({
             }, 
             port: {
                 format: 'port',
-                default: 80,
+                default: 5432,
                 env: 'PORT',
                 env: 'SRC_DB_PORT'
             },
