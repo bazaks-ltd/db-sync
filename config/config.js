@@ -62,7 +62,6 @@ var config = convict({
             port: {
                 format: 'port',
                 default: 80,
-                env: 'PORT',
                 env: 'DST_DB_PORT'
             },
             tunnel: {
@@ -70,6 +69,13 @@ var config = convict({
                 default: false,
                 env: 'DST_TUNNEL'
             }
+        }
+    },
+    dump: {
+        limit: {
+            format: 'int',
+            default: 10,
+            env: 'DB_DUMP_LIMIT'
         }
     }
 });

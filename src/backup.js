@@ -1,15 +1,8 @@
 const {execute} = require('@getvim/execute');
 var config = require('../config/config');
+const backupFileName = require('./utils/backupFileName');
 
-const pgpass = require('./pgpass');
-
-function backupFileName() {
-    const date = new Date();
-    const currentDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}.${date.getHours()}.${date.getMinutes()}`;
-    return `dump/${config.get("src.db.name")}-${currentDate}.dump`;
-}
-
-function backup() {
+module.exports = function backup() {
     execute(`pg_dump -O -x -v -Fc -Z 9 \
     -d ${config.get("src.db.name")} \
     -h ${config.get("src.db.host")} \
@@ -22,6 +15,3 @@ function backup() {
         execute(`rm -rf ${fileName}`);
     })
 }
-
-pgpass();
-backup();
