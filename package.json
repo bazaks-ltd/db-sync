@@ -1,0 +1,9 @@
+{
+  "name": "db-sync",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:bazaks-ltd/db-sync.git",
+  "author": "Terence Adrien Zama <terence.zama@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
