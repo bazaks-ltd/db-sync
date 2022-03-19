@@ -5,7 +5,7 @@ const sortedDumpFiles = require("./utils/sortedDumpFiles");
 const dumpDir = `./dump`;
 
 
-module.exports = function limitDump() {
+function limitDump() {
     const dumpLimit = config.get("dump.limit");
     const dumpFiles = sortedDumpFiles();
     
@@ -13,3 +13,5 @@ module.exports = function limitDump() {
         fs.rmSync(path.join(dumpDir, dumpFiles.pop()));
     }
 }
+
+module.exports = limitDump;

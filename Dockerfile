@@ -5,10 +5,10 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json ./
 
-RUN npm install --production
+RUN yarn
 
 COPY . .
 
-CMD [ "node", "server.js" ]
+CMD [ "node", "index.js", "pgpass" ]
