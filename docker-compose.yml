@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+      - dbnet
+  dbsync:
+    container_name: db-sync
+    build:
+      context: ./
+    image: db-sync
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    command: node run.js
+    volumes:
+      - './:/src'
+      - dbstore:/app/dump
+    networks:
+      - dbnet
+volumes:
+  db:
+    driver: local
+  dbstore:
+
+networks:
+  dbnet:
+    driver: bridge
