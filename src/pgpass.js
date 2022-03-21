@@ -5,10 +5,13 @@ const config = require("../config/config");
 const pgpassFile = path.join(os.homedir(), ".pgpass");
 
 function checkPgPassFile() {
+  console.log(">>>pgpass");
+  console.log(pgpassFile);
   if (fs.existsSync(pgpassFile)) {
     console.log(`pgpass: exists in directory`);
   } else {
-    fs.mkdirSync(pgpassFile);
+    fs.closeSync(fs.openSync(pgpassFile, 'w'))
+    console.log(`pgpass: creating in directory`);
   }
 }
 
