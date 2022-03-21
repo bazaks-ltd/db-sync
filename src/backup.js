@@ -12,6 +12,5 @@ module.exports = function backup() {
         console.log("ine fini");
     }).catch(err => {
         console.log(err);
-        execute(`rm -rf ${fileName}`);
     })
 }
