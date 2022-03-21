@@ -6,6 +6,7 @@ This project is being modular because of different needs. It can run on your loc
 
 ```
 node index.js <action>
+or yarn <action>
 ```
 actions 
 

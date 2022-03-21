@@ -7,7 +7,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "e": "node src/index.js"
+    "backup": "node index.js backup",
+    "limitDump": "node index.js limitDump",
+    "pgpass": "node index.js pgpass",
+    "restore": "node index.js restore",
+    "sshTunnel": "node index.js sshTunnel"
   },
   "dependencies": {
     "@getvim/execute": "^1.0.0",

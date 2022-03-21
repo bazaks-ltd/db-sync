@@ -1,8 +1,9 @@
-const { spawn, exec } = require('child_process');
+const { spawn } = require('child_process');
 const fs = require('fs');
 const config = require('../config/config');
 const os = require('os');
 const path = require('path');
+const log = require('./utils/log');
 const sshConfigPath = path.join(os.homedir(), '.ssh/config');
 
 function writeConfigFile(tunnelConfig) {
@@ -45,6 +46,7 @@ function closeTunnel(configName) {
 }
 
 function sshTunnel() {
+    log(">>> sshTunnel: start");
     //check src tunnel 
     let srcTunnelConfig = config.get('src.tunnel');
     if (srcTunnelConfig.allow) {
@@ -52,6 +54,7 @@ function sshTunnel() {
         srcTunnelConfig.pkeyFile = 'tnl_src_idty_file';
 
         writeConfigFile(srcTunnelConfig);
+        openTunnel(srcTunnelConfig.configName);
     }
 
     //check dst tunnel
@@ -61,7 +64,9 @@ function sshTunnel() {
         dstTunnelConfig.pkeyFile = 'tnl_dst_idty_file';
 
         writeConfigFile(dstTunnelConfig);
+        openTunnel(dstTunnelConfig.configName);
     }
+    log(">>> sshTunnel: end");
 }
 
 module.exports = sshTunnel;
